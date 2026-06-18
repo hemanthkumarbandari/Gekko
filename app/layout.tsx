@@ -1,19 +1,19 @@
 import type { Metadata } from 'next'
-import { Syne, Inter } from 'next/font/google'
+import { Outfit, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import Providers from '@/components/layout/Providers'
 
-const syne = Syne({
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-syne',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-outfit',
   display: 'swap',
 })
 
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-plus-jakarta',
   display: 'swap',
 })
 
@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${plusJakarta.variable}`}>
       <body className="font-body theme-dark-bg text-white/95 overflow-x-hidden">
         <Providers>
           {children}

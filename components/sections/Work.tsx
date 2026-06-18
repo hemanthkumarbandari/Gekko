@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/data/projects'
-import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { gsap } from '@/lib/gsap'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import type { Project } from '@/types/project'
 import { cn } from '@/lib/utils'
@@ -16,46 +16,47 @@ function ProjectMockup({ project }: { project: Project }) {
     warm: { bg: 'from-amber-50 to-orange-50', accent: project.mockupAccent },
   }
   const theme = themeColors[project.mockupTheme]
+  const hasLiveUrl = project.url && project.url !== '#'
 
   return (
     <div
       className={cn(
-        'w-full h-full rounded-2xl overflow-hidden border border-white/30 shadow-glass',
+        'w-full h-full rounded-2xl overflow-hidden border border-white/30 shadow-glass flex flex-col',
         `bg-gradient-to-br ${theme.bg}`
       )}
     >
       {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/20 bg-white/20">
+      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/20 bg-white/20 flex-shrink-0">
         <div className="w-2.5 h-2.5 rounded-full bg-red-300/80" />
         <div className="w-2.5 h-2.5 rounded-full bg-yellow-300/80" />
         <div className="w-2.5 h-2.5 rounded-full bg-green-300/80" />
         <div className="flex-1 ml-3 bg-white/30 rounded-full px-3 py-0.5 text-[10px] font-body opacity-70">
-          {project.url === '#' ? `${project.id}.com` : project.url}
+          {project.url}
         </div>
       </div>
       {/* Content area */}
-      <div className="p-6 flex flex-col gap-3">
-        <div
-          className="w-16 h-16 rounded-xl opacity-80"
-          style={{ background: `${project.mockupAccent}33` }}
-        />
-        <div className="h-3 rounded-full bg-current opacity-20 w-3/4" />
-        <div className="h-3 rounded-full bg-current opacity-15 w-full" />
-        <div className="h-3 rounded-full bg-current opacity-10 w-2/3" />
-        <div
-          className="mt-2 h-24 rounded-xl"
-          style={{ background: `linear-gradient(135deg, ${project.mockupAccent}22, ${project.mockupAccent}55)` }}
-        />
-        <div className="flex gap-3 mt-2">
-          {project.stats.map((stat) => (
-            <div key={stat.label} className="flex-1 bg-white/25 rounded-lg p-3">
-              <p className="font-display font-bold text-lg" style={{ color: project.mockupAccent }}>
-                {stat.value}
-              </p>
-              <p className="font-body text-[10px] opacity-60">{stat.label}</p>
-            </div>
-          ))}
-        </div>
+      <div className="flex-1 relative overflow-hidden bg-white">
+        {hasLiveUrl ? (
+          <iframe
+            src={project.url}
+            title={project.title}
+            className="w-full h-full border-none pointer-events-none select-none"
+          />
+        ) : (
+          <div className="p-6 flex flex-col gap-3 h-full justify-center">
+            <div
+              className="w-16 h-16 rounded-xl opacity-80"
+              style={{ background: `${project.mockupAccent}33` }}
+            />
+            <div className="h-3 rounded-full bg-current opacity-20 w-3/4" />
+            <div className="h-3 rounded-full bg-current opacity-15 w-full" />
+            <div className="h-3 rounded-full bg-current opacity-10 w-2/3" />
+            <div
+              className="mt-2 h-24 rounded-xl"
+              style={{ background: `linear-gradient(135deg, ${project.mockupAccent}22, ${project.mockupAccent}55)` }}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
@@ -91,19 +92,19 @@ function ProjectRow({
         <div className="flex items-center gap-3">
           <span className="font-body text-xs text-glacier font-bold tracking-widest">{project.index}</span>
           <span className="w-8 h-px bg-glacier/40" />
-          <span className="font-body text-xs text-deep/50 uppercase tracking-wider">{project.category}</span>
+          <span className="font-body text-xs text-white/60 uppercase tracking-wider">{project.category}</span>
         </div>
-        <h3 className="font-display font-black text-[clamp(2rem,4vw,3.5rem)] text-night leading-none">
+        <h3 className="font-display font-black text-[clamp(2rem,4vw,3.5rem)] text-white leading-none">
           {project.title}
         </h3>
-        <p className="font-body text-base text-deep/70 leading-relaxed max-w-md">
+        <p className="font-body text-base text-white/80 leading-relaxed max-w-md">
           {project.description}
         </p>
         <div className="flex gap-6">
           {project.stats.map((stat) => (
             <div key={stat.label}>
               <p className="font-display font-black text-2xl text-glacier">{stat.value}</p>
-              <p className="font-body text-xs text-deep/50 mt-0.5">{stat.label}</p>
+              <p className="font-body text-xs text-white/60 mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -113,9 +114,9 @@ function ProjectRow({
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="inline-flex items-center gap-2 text-deep font-body font-semibold text-sm group w-fit hover:text-glacier transition-colors"
+          className="inline-flex items-center gap-2 text-white font-body font-semibold text-sm group w-fit hover:text-glacier transition-colors"
         >
-          Case Study
+          Visit Website
           <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </motion.a>
       </motion.div>
@@ -180,7 +181,7 @@ export default function Work() {
           <p className="font-body text-glacier text-sm font-semibold tracking-widest uppercase mb-3">
             The Proof
           </p>
-          <h2 className="font-display font-black text-[clamp(2.5rem,5vw,4.5rem)] text-night leading-tight">
+          <h2 className="font-display font-black text-[clamp(2.5rem,5vw,4.5rem)] text-white leading-tight">
             Not portfolios.
             <br />
             <span className="text-glacier">Battle records.</span>
@@ -198,25 +199,32 @@ export default function Work() {
             className="absolute top-0 left-0 h-full flex"
             style={{ width: '200%' }}
           >
-            {[projects[2], projects[3]].map((project, i) => (
+            {[projects[2], projects[3]].map((project) => (
               <div key={project.id} className="w-1/2 h-full px-6 flex items-center">
                 <div className="grid grid-cols-2 gap-10 items-center w-full">
                   <div className="flex flex-col gap-5">
                     <div className="flex items-center gap-3">
                       <span className="font-body text-xs text-glacier font-bold tracking-widest">{project.index}</span>
                       <span className="w-8 h-px bg-glacier/40" />
-                      <span className="font-body text-xs text-deep/50 uppercase tracking-wider">{project.category}</span>
+                      <span className="font-body text-xs text-white/60 uppercase tracking-wider">{project.category}</span>
                     </div>
-                    <h3 className="font-display font-black text-5xl text-night">{project.title}</h3>
-                    <p className="font-body text-base text-deep/70 leading-relaxed">{project.description}</p>
-                    <div className="flex gap-6">
+                    <h3 className="font-display font-black text-5xl text-white">{project.title}</h3>
+                    <p className="font-body text-base text-white/80 leading-relaxed">{project.description}</p>
+                    <div className="flex gap-6 mb-2">
                       {project.stats.map((stat) => (
                         <div key={stat.label}>
                           <p className="font-display font-black text-2xl text-glacier">{stat.value}</p>
-                          <p className="font-body text-xs text-deep/50">{stat.label}</p>
+                          <p className="font-body text-xs text-white/60">{stat.label}</p>
                         </div>
                       ))}
                     </div>
+                    <motion.a
+                      href={project.url}
+                      className="inline-flex items-center gap-2 text-white font-body font-semibold text-sm group w-fit hover:text-glacier transition-colors"
+                    >
+                      Visit Website
+                      <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </motion.a>
                   </div>
                   <div className="h-80">
                     <ProjectMockup project={project} />
@@ -226,9 +234,6 @@ export default function Work() {
             ))}
           </div>
         </div>
-
-        {/* Project 5 — regular row */}
-        <ProjectRow project={projects[4]} index={4} />
       </div>
     </section>
   )

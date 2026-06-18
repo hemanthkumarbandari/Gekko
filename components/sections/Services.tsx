@@ -65,13 +65,12 @@ export default function Services() {
           <p className="font-body text-glacier text-sm font-semibold tracking-widest uppercase mb-3">
             The Craft
           </p>
-          <h2 className="font-display font-black text-[clamp(2.5rem,5vw,4.5rem)] text-night leading-tight">
+          <h2 className="font-display font-black text-[clamp(2.5rem,5vw,4.5rem)] text-white leading-tight">
             Six weapons.
             <br />
             <span className="text-glacier">Pick yours.</span>
           </h2>
         </motion.div>
-
         {/* Bento grid */}
         <div
           className="grid gap-4"
@@ -87,9 +86,12 @@ export default function Services() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            whileHover="hover"
-            initial_="rest"
-            variants_={hoverVariant}
+            whileHover={{
+              scale: 1.015,
+              y: -7,
+              boxShadow: '0 28px 64px rgba(26, 95, 122, 0.18)',
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 22 }}
             className="col-span-2 row-span-1"
           >
             <GlassCard variant="gradient" className="h-full min-h-[280px] flex flex-col justify-between overflow-hidden">

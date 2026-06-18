@@ -18,8 +18,8 @@ const config: Config = {
         night:   '#0d3a52',
       },
       fontFamily: {
-        display: ['var(--font-syne)', 'sans-serif'],
-        body:    ['var(--font-inter)', 'sans-serif'],
+        display: ['var(--font-outfit)', 'sans-serif'],
+        body:    ['var(--font-plus-jakarta)', 'sans-serif'],
       },
       keyframes: {
         shimmer: {

@@ -102,12 +102,12 @@ export default function Contact() {
           <p className="font-body text-glacier text-sm font-semibold tracking-widest uppercase mb-3">
             Contact
           </p>
-          <h2 className="font-display font-black text-[clamp(2rem,4.5vw,3.8rem)] text-night leading-tight">
+          <h2 className="font-display font-black text-[clamp(2rem,4.5vw,3.8rem)] text-white leading-tight">
             Let&apos;s Build Something
             <br />
             <span className="text-glacier">Unforgettable</span>
           </h2>
-          <p className="font-body text-base text-deep/60 mt-4 max-w-lg mx-auto">
+          <p className="font-body text-base text-white/70 mt-4 max-w-lg mx-auto">
             Tell us what you&apos;re building. We&apos;ll tell you if it can be extraordinary.
           </p>
         </motion.div>

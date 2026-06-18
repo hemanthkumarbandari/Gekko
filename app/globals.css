@@ -48,7 +48,7 @@ html {
 body {
   background: var(--snow);
   color: var(--text);
-  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-family: var(--font-plus-jakarta, 'Plus Jakarta Sans', sans-serif);
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -57,7 +57,7 @@ body {
    Typography
 ───────────────────────────────────────────── */
 .font-display {
-  font-family: var(--font-syne, 'Syne', sans-serif);
+  font-family: var(--font-outfit, 'Outfit', sans-serif);
 }
 
 /* ─────────────────────────────────────────────
