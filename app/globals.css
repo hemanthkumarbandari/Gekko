@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   CSS Custom Properties — Gekko Design System
+───────────────────────────────────────────── */
+:root {
+  --ice:      #d6f0fb;
+  --snow:     #eaf7fd;
+  --mist:     #b8e4f7;
+  --glacier:  #7dc9e8;
+  --deep:     #1a5f7a;
+  --night:    #0d3a52;
+  --glass:    rgba(255, 255, 255, 0.45);
+  --glass-b:  rgba(125, 201, 232, 0.28);
+  --text:     #0d3a52;
+  --text-sub: #2a7090;
+
+  /* Spacing */
+  --nav-h: 64px;
+}
+
+/* ─────────────────────────────────────────────
+   Reset & Base
+───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  cursor: none;
+  scroll-behavior: auto; /* Lenis handles this */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+  html {
+    cursor: auto;
+  }
+}
+
+body {
+  background: var(--snow);
+  color: var(--text);
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ─────────────────────────────────────────────
+   Typography
+───────────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-syne, 'Syne', sans-serif);
+}
+
+/* ─────────────────────────────────────────────
+   CSS 3D Cube Animation
+───────────────────────────────────────────── */
+@keyframes spin-slow {
+  0%   { transform: rotateY(0deg) rotateX(12deg); }
+  100% { transform: rotateY(360deg) rotateX(12deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* ─────────────────────────────────────────────
+   Glassmorphism Utilities
+───────────────────────────────────────────── */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(26, 95, 122, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────────
+   Gradient Text
+───────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--glacier), var(--deep), var(--night));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   Scrollbar Styling
+───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--snow);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glacier);
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   Selection
+───────────────────────────────────────────── */
+::selection {
+  background: var(--glacier);
+  color: white;
+}
+
+/* ─────────────────────────────────────────────
+   Focus Visible
+───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--glacier);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   Perspective Utility
+───────────────────────────────────────────── */
+.perspective-600 {
+  perspective: 600px;
+}
+
+/* ─────────────────────────────────────────────
+   Background Gradient — Mobile fallback
+───────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────
+   Reduced Motion Override
+───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Snow Effect
+───────────────────────────────────────────── */
+.snow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Individual snowflake styling */
+.snowflake {
+    position: absolute;
+    color: rgba(255, 255, 255, .95);
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 0 0 8px rgba(255, 255, 255, .8);
+    animation-name: snowFall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+
+/* Snowflake falling keyframes with subtle swaying motion */
+@keyframes snowFall {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(25vh) translateX(18px) rotate(90deg);
+    }
+    50% {
+        transform: translateY(50vh) translateX(-22px) rotate(180deg);
+    }
+    75% {
+        transform: translateY(75vh) translateX(15px) rotate(270deg);
+    }
+    100% {
+        transform: translateY(110vh) translateX(-10px) rotate(360deg);
+        opacity: .6;
+    }
+}
+
+/* ─────────────────────────────────────────────
+   Dark Theme Background
+───────────────────────────────────────────── */
+.theme-dark-bg {
+  background: linear-gradient(to bottom, #09283a, #041017);
+  background-attachment: fixed;
+}
