@@ -322,7 +322,7 @@ export default function Contact() {
                   </div>
 
                   {/* Submit */}
-                  <MagneticButton className="self-end">
+                  <MagneticButton as="div" className="self-end">
                     <button
                       type="submit"
                       disabled={submitting}

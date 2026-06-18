@@ -138,7 +138,7 @@ export default function Nav() {
                 <span className="font-body text-xs text-white/90 font-medium tracking-wide">Available Now</span>
               </div>
 
-              <MagneticButton>
+              <MagneticButton as="div">
                 <a
                   href="#contact"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-glacier to-deep text-white font-body font-semibold text-sm px-5 py-2 rounded-full hover:shadow-ice transition-shadow"

@@ -172,7 +172,7 @@ export default function Hero() {
 
             {/* CTAs */}
             <motion.div variants={childVariants} className="flex flex-wrap items-center gap-4">
-              <MagneticButton>
+              <MagneticButton as="div">
                 <a
                   href="#contact"
                   className="relative overflow-hidden inline-flex items-center gap-2 bg-gradient-to-r from-glacier to-deep text-white font-body font-semibold px-7 py-3.5 rounded-full group"
@@ -186,7 +186,7 @@ export default function Hero() {
                   />
                 </a>
               </MagneticButton>
-              <MagneticButton>
+              <MagneticButton as="div">
                 <a
                   href="#work"
                   className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-md border border-glacier/40 text-deep font-body font-semibold px-7 py-3.5 rounded-full hover:bg-white/70 transition-colors"
